@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Ing. Luis Chicayza</title>
+    <style>
+        /* === RESETEO BASE === */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Quita el parpadeo azul en móviles al tocar botones */
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden; /* Prohíbe barras de desplazamiento horizontales */
+        }
+
+        /* === BARRA DE NAVEGACIÓN === */
+        header {
+            background-color: #004085;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav button:hover {
+            color: white;
+        }
+
+        /* Indicador de pestaña activa */
+        nav button.active {
+            color: white;
+            border-bottom: 2px solid #fff;
+            font-weight: 600;
+        }
+
+        /* === CONTENEDOR PRINCIPAL === */
+        main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 70px);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Configuración del interruptor de secciones */
+        .seccion {
+            display: none; /* Oculta todas las secciones por defecto */
+            width: 100%;
+            animation: aparecerSuave 0.4s ease-out forwards;
+        }
+
+        /* Clase mágica que el JavaScript usará para encender la sección */
+        .seccion.activa {
+            display: block; 
+        }
+
+        @keyframes aparecerSuave {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === SECCIÓN 1: HOME (FOTO Y BIO) === */
+        .home-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            justify-content: center;
+            flex-wrap: wrap; /* En celulares, empuja el texto abajo */
+            padding-top: 20px;
+        }
+
+        .columna-foto {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 20px;
+            background-color: #f8f9fa;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            
+            /* Tu animación característica */
+            animation: revelarDesdeIzquierda 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        @keyframes revelarDesdeIzquierda {
+            0% { clip-path: inset(0 100% 0 0); transform: scale(1.05); filter: blur(10px); }
+            100% { clip-path: inset(0 0 0 0); transform: scale(1); filter: blur(0px); }
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            border-radius: 20px;
+            display: block;
+        }
+
+        .titulo-profesional {
+            font-size: 1.4rem;
+            color: #004085;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .columna-texto {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .columna-texto h1 {
+            color: #004085;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .columna-texto p {
+            font-size: 1.1rem;
+            text-align: justify;
+            color: #444;
+        }
+
+        /* Animación hover solo para computadoras */
+        @media (hover: hover) and (pointer: fine) {
+            .profile-image-container:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 35px rgba(0, 120, 212, 0.15);
+            }
+        }
+
+        /* === SECCIÓN 2: SERVICIOS === */
+        .services-header {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            font-size: 3rem;
+            font-weight: bold;
+            border-radius: 12px;
+        }
+
+        /* === SECCIÓN 3: PORTAFOLIO BI === */
+        .portafolio-header {
+            color: #004085; 
+            text-align: center; 
+            margin-bottom: 30px; 
+            font-size: 2rem;
+        }
+
+        .dashboard-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Mantiene la proporción del dashboard fluida */
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .dashboard-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* === SECCIÓN 4: CONTACTO === */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            padding: 18px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333333;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            width: 100%;
+            border-left: 5px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-card.whatsapp { border-left-color: #25D366; }
+        .contact-card.email { border-left-color: #EA4335; }
+        .contact-card.linkedin { border-left-color: #0077b5; }
+
+        .icon-container {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            margin-right: 15px; flex-shrink: 0;
+        }
+
+        .whatsapp .icon-container { background: rgba(37,211,102,0.1); }
+        .email .icon-container { background: rgba(234,67,53,0.1); }
+        .linkedin .icon-container { background: rgba(0,119,181,0.1); }
+        
+        .icon-container svg { width: 24px; height: 24px; }
+        .whatsapp svg { fill: #25D366; }
+        .email svg { fill: #EA4335; }
+        .linkedin svg { fill: #0077b5; }
+
+        .info-container { display: flex; flex-direction: column; overflow: hidden; }
+        .title { font-size: 13px; color: #777; text-transform: uppercase; font-weight: 600; }
+        .detail { font-size: 16px; font-weight: 500; word-wrap: break-word; }
+
+        /* === AJUSTES PARA CELULARES (MEDIA QUERIES) === */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            nav {
+                width: 100%;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .home-container {
+                gap: 30px;
+            }
+
+            .columna-texto p {
+                text-align: left; /* En móviles es mejor alinear a la izquierda para leer fluido */
+            }
+
+            .dashboard-wrapper {
+                aspect-ratio: 4 / 3; /* Le da más altura al dashboard en celular */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <header>
+        <div class="logo-title">Portafolio | Luis Chicayza</div>
+        <nav id="menuNavegacion">
+            <!-- Los botones activan la función JavaScript 'cambiarSeccion' al hacer clic -->
+            <button onclick="cambiarSeccion('home')" class="active" id="btn-home">Home</button>
+            <button onclick="cambiarSeccion('servicios')" id="btn-servicios">Servicios</button>
+            <button onclick="cambiarSeccion('portafolio')" id="btn-portafolio">Portafolio BI</button>
+            <button onclick="cambiarSeccion('contacto')" id="btn-contacto">Contacto</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SECCIÓN 1: HOME -->
+        <!-- Tiene la clase 'activa' por lo que es la única que se ve al abrir la página -->
+        <section id="home" class="seccion activa">
+            <div class="home-container">
+                
+                <div class="columna-foto">
+                    <div class="profile-image-container">
+                        <img src="https://drive.google.com/thumbnail?id=1ewG7rBc-CnJar4zxs3SZ7YDRle7rOOZx&sz=w800" alt="Foto de perfil">
+                    </div>
+                    <!-- Nombre profesional debajo de la foto -->
+                    <h2 class="titulo-profesional">Ing. Luis Chicayza</h2>
+                </div>
+
+                <div class="columna-texto">
+                    <h1>Analista de datos</h1>
+                    <p>Analista de Inteligencia de Negocios con experiencia en procesos ETL y en presentar información clave mediante dashboards y KPIs para identificar oportunidades de mejora y respaldar la toma de decisiones de la alta gerencia. Con conocimientos en análisis estadístico, automatización, machine learning, visualización de datos y manejo de herramientas clave como SQL, R, Python, Power BI y Excel a nivel intermedio para garantizar la calidad y confiabilidad de los datos. Me destaco por mi pensamiento analítico, comunicación efectiva y capacidad para la resolución de problemas basada en datos.</p>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: SERVICIOS -->
+        <section id="servicios" class="seccion">
+            <div class="services-header">
+                Servicios
+            </div>
+            <p style="text-align: center; color: #666; margin-top: 20px;">
+                (Aquí podrás detallar tus consultorías, proyectos o servicios ofrecidos)
+            </p>
+        </section>
+
+        <!-- SECCIÓN 3: PORTAFOLIO BI -->
+        <section id="portafolio" class="seccion">
+            <h2 class="portafolio-header">Proyecto Final Análisis Ingresos</h2>
+            <div class="dashboard-wrapper">
+                <iframe title="Proyecto Final Análisis Ingresos" src="https://app.powerbi.com/view?r=eyJrIjoiN2Y4OGNjZWQtMmQ2MS00NjlkLWFmY2YtNzYwYWE5YWRhOTFkIiwidCI6ImQ3Zjg2NzEwLTAxZTEtNDYxZC04NTk5LTc1OGRlNDU0MmUyYiIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: CONTACTO -->
+        <section id="contacto" class="seccion">
+            <h2 class="portafolio-header">Contacto</h2>
+            <div class="contact-container">
+                <a href="https://wa.me/593986278937" class="contact-card whatsapp" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-container">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                    <div class="info-container">
+                        <span class="title">WhatsApp Directo</span>
+                        <span class="detail">+593 98 627 8937</span>
+                    </div>
+                </a>
+    
+                <a href="mailto:luis.chicayzaguaman@gmail.com" class="contact-card email">
+                    <div class="icon-container">
+                        <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+                    </div>
+                    <div class="info-container">
+                        <span class="title">Correo Electrónico</span>
+                        <span class="detail">luis.chicayzaguaman@gmail.com</span>
+                    </div>
+                </a>
+    
+                <a href="https://www.linkedin.com/in/chicayza/" class="contact-card linkedin" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-container">
+                        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </div>
+                    <div class="info-container">
+                        <span class="title">LinkedIn</span>
+                        <span class="detail">Alberto Chicayza</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- MOTOR JAVASCRIPT: Lógica para cambiar de pestaña al instante -->
+    <script>
+        function cambiarSeccion(idSeccion) {
+            // 1. Apaga todas las secciones quitando la clase 'activa'
+            const secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(seccion => {
+                seccion.classList.remove('activa');
+            });
+
+            // 2. Enciende la sección solicitada
+            const seccionDestino = document.getElementById(idSeccion);
+            if(seccionDestino) {
+                seccionDestino.classList.add('activa');
+                
+                // Truco para reiniciar la animación de la foto cada vez que vuelves al Home
+                if(idSeccion === 'home') {
+                    const foto = document.querySelector('.profile-image-container');
+                    foto.style.animation = 'none';
+                    foto.offsetHeight; // Fuerza la lectura del DOM
+                    foto.style.animation = 'revelarDesdeIzquierda 2s cubic-bezier(0.25, 1, 0.5, 1) forwards';
+                }
+            }
+
+            // 3. Quita el subrayado brillante a todos los botones del menú
+            const botonesMenu = document.querySelectorAll('#menuNavegacion button');
+            botonesMenu.forEach(boton => {
+                boton.classList.remove('active');
+            });
+
+            // 4. Le pone el subrayado brillante al botón que acabas de presionar
+            const botonDestino = document.getElementById('btn-' + idSeccion);
+            if(botonDestino) {
+                botonDestino.classList.add('active');
+            }
+            
+            // 5. Vuelve el scroll arriba por si el usuario había bajado mucho en otra pestaña
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
