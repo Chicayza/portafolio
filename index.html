@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio | Ing. Luis Chicayza</title>
+    <title>Luis Alberto Chicayza Guamán | Data Analyst & Business Intelligence</title>
+    <meta name="description" content="Portafolio profesional de proyectos de Business Intelligence, Análisis de Datos y mi camino hacia el modelado con Data Science e IA.">
+    
+    <!-- Librería de Íconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         /* === RESETEO BASE === */
         * {
@@ -11,14 +16,14 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent; /* Quita el parpadeo azul en móviles al tocar botones */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: #f4f6f8;
             color: #333;
             line-height: 1.6;
-            overflow-x: hidden; /* Prohíbe barras de desplazamiento horizontales */
+            overflow-x: hidden;
         }
 
         /* === BARRA DE NAVEGACIÓN === */
@@ -61,7 +66,6 @@
             color: white;
         }
 
-        /* Indicador de pestaña activa */
         nav button.active {
             color: white;
             border-bottom: 2px solid #fff;
@@ -79,14 +83,12 @@
             align-items: flex-start;
         }
 
-        /* Configuración del interruptor de secciones */
         .seccion {
-            display: none; /* Oculta todas las secciones por defecto */
+            display: none;
             width: 100%;
             animation: aparecerSuave 0.4s ease-out forwards;
         }
 
-        /* Clase mágica que el JavaScript usará para encender la sección */
         .seccion.activa {
             display: block; 
         }
@@ -96,13 +98,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* === SECCIÓN 1: HOME (FOTO Y BIO) === */
+        /* === SECCIÓN 1: HOME === */
         .home-container {
             display: flex;
             align-items: center;
             gap: 50px;
             justify-content: center;
-            flex-wrap: wrap; /* En celulares, empuja el texto abajo */
+            flex-wrap: wrap;
             padding-top: 20px;
         }
 
@@ -122,8 +124,6 @@
             border-radius: 20px;
             background-color: #f8f9fa;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            
-            /* Tu animación característica */
             animation: revelarDesdeIzquierda 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
@@ -166,7 +166,6 @@
             color: #444;
         }
 
-        /* Animación hover solo para computadoras */
         @media (hover: hover) and (pointer: fine) {
             .profile-image-container:hover {
                 transform: translateY(-8px);
@@ -174,28 +173,185 @@
             }
         }
 
-        /* === SECCIÓN 2: SERVICIOS === */
-        .services-header {
-            background-color: #34495e;
-            color: white;
+        /* === SECCIÓN 2: SERVICIOS (NUEVO DISEÑO) === */
+        .section-title {
+            color: #004085;
             text-align: center;
-            padding: 100px 20px;
-            font-size: 3rem;
-            font-weight: bold;
-            border-radius: 12px;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .servicio-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 5px solid #004085;
+            transition: transform 0.3s ease;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .servicio-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .servicio-header i {
+            font-size: 2rem;
+            color: #004085;
+        }
+
+        .servicio-header h3 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .servicio-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .servicio-lista {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .servicio-lista li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .servicio-lista li i {
+            color: #28a745;
+            margin-top: 5px;
+        }
+
+        /* Insignias de Herramientas */
+        .tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tool-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .bg-python { background: #3776AB; }
+        .bg-r { background: #276DC3; }
+        .bg-sql { background: #F29111; }
+        .bg-powerbi { background: #F2C811; color: #333; }
+        .bg-excel { background: #217346; }
+
+        /* Acordeón de Clases */
+        .curso-accordion {
+            margin-top: 20px;
+        }
+
+        details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 18px 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            transition: background 0.3s;
+        }
+
+        summary:hover {
+            background: #f1f5f9;
+        }
+
+        summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #004085;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .details-content {
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .clase-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+        }
+        
+        .clase-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .clase-titulo {
+            font-weight: 700;
+            color: #004085;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .sub-lista {
+            margin-left: 20px;
+            margin-top: 8px;
+            list-style-type: circle;
+        }
+
+        .sub-lista li {
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            color: #555;
         }
 
         /* === SECCIÓN 3: PORTAFOLIO BI === */
-        .portafolio-header {
-            color: #004085; 
-            text-align: center; 
-            margin-bottom: 30px; 
-            font-size: 2rem;
-        }
-
         .dashboard-wrapper {
             width: 100%;
-            aspect-ratio: 16 / 9; /* Mantiene la proporción del dashboard fluida */
+            aspect-ratio: 16 / 9;
             background: #fff;
             padding: 10px;
             border-radius: 12px;
@@ -263,7 +419,7 @@
         .title { font-size: 13px; color: #777; text-transform: uppercase; font-weight: 600; }
         .detail { font-size: 16px; font-weight: 500; word-wrap: break-word; }
 
-        /* === AJUSTES PARA CELULARES (MEDIA QUERIES) === */
+        /* === AJUSTES PARA CELULARES === */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -282,11 +438,15 @@
             }
 
             .columna-texto p {
-                text-align: left; /* En móviles es mejor alinear a la izquierda para leer fluido */
+                text-align: left;
             }
 
             .dashboard-wrapper {
-                aspect-ratio: 4 / 3; /* Le da más altura al dashboard en celular */
+                aspect-ratio: 4 / 3;
+            }
+
+            .servicio-header h3 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -297,7 +457,6 @@
     <header>
         <div class="logo-title">Portafolio | Luis Chicayza</div>
         <nav id="menuNavegacion">
-            <!-- Los botones activan la función JavaScript 'cambiarSeccion' al hacer clic -->
             <button onclick="cambiarSeccion('home')" class="active" id="btn-home">Home</button>
             <button onclick="cambiarSeccion('servicios')" id="btn-servicios">Servicios</button>
             <button onclick="cambiarSeccion('portafolio')" id="btn-portafolio">Portafolio BI</button>
@@ -307,15 +466,12 @@
 
     <main>
         <!-- SECCIÓN 1: HOME -->
-        <!-- Tiene la clase 'activa' por lo que es la única que se ve al abrir la página -->
         <section id="home" class="seccion activa">
             <div class="home-container">
-                
                 <div class="columna-foto">
                     <div class="profile-image-container">
                         <img src="https://drive.google.com/thumbnail?id=1ewG7rBc-CnJar4zxs3SZ7YDRle7rOOZx&sz=w800" alt="Foto de perfil">
                     </div>
-                    <!-- Nombre profesional debajo de la foto -->
                     <h2 class="titulo-profesional">Ing. Luis Chicayza</h2>
                 </div>
 
@@ -323,23 +479,190 @@
                     <h1>Analista de datos</h1>
                     <p>Analista de Inteligencia de Negocios con experiencia en procesos ETL y en presentar información clave mediante dashboards y KPIs para identificar oportunidades de mejora y respaldar la toma de decisiones de la alta gerencia. Con conocimientos en análisis estadístico, automatización, machine learning, visualización de datos y manejo de herramientas clave como SQL, R, Python, Power BI y Excel a nivel intermedio para garantizar la calidad y confiabilidad de los datos. Me destaco por mi pensamiento analítico, comunicación efectiva y capacidad para la resolución de problemas basada en datos.</p>
                 </div>
-                
             </div>
         </section>
 
-        <!-- SECCIÓN 2: SERVICIOS -->
+        <!-- SECCIÓN 2: SERVICIOS (MODIFICADA) -->
         <section id="servicios" class="seccion">
-            <div class="services-header">
-                Servicios
+            <h2 class="section-title">Servicios Profesionales</h2>
+            
+            <div class="servicios-grid">
+                
+                <!-- PILAR 1: CONSULTORÍA -->
+                <div class="servicio-card">
+                    <div class="servicio-header">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <h3>Analista BI / Ciencia de Datos</h3>
+                    </div>
+                    <p class="servicio-subtitle">Se desarrollan proyectos integrales tanto a nivel académico como empresarial.</p>
+                    
+                    <ul class="servicio-lista">
+                        <li><i class="fa-solid fa-check-circle"></i> Implementación de procesos ETL.</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Análisis estadístico y diseño de dashboards.</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Desarrollo de modelos de Machine Learning.</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Automatización de tareas repetitivas.</li>
+                    </ul>
+
+                    <div class="tools-container">
+                        <span class="tool-badge bg-python"><i class="fa-brands fa-python"></i> Python</span>
+                        <span class="tool-badge bg-r"><i class="fa-solid fa-registered"></i> RStudio</span>
+                        <span class="tool-badge bg-sql"><i class="fa-solid fa-database"></i> SQL</span>
+                        <span class="tool-badge bg-powerbi"><i class="fa-solid fa-chart-simple"></i> Power BI</span>
+                        <span class="tool-badge bg-excel"><i class="fa-solid fa-file-excel"></i> Excel</span>
+                    </div>
+                </div>
+
+                <!-- PILAR 2: CLASES VIRTUALES -->
+                <div class="servicio-card">
+                    <div class="servicio-header">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <h3>Clases Personalizadas (Virtual)</h3>
+                    </div>
+                    <p class="servicio-subtitle">Aprende desde cero a desarrollar proyectos de análisis de datos, Business Intelligence y Ciencia de Datos.</p>
+                    
+                    <div class="curso-accordion">
+                        
+                        <!-- Curso 1: Power BI -->
+                        <details>
+                            <summary><i class="fa-solid fa-chart-simple" style="color: #F2C811; margin-right: 10px;"></i> 1. Inteligencia de Negocios con Power BI</summary>
+                            <div class="details-content">
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 1: Conexión de Datos</span>
+                                    <p>Conectar Power BI a diversas fuentes de datos (archivos Excel, CSV, Web, bases de datos SQL y servicios en la nube).</p>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 2: Power Query</span>
+                                    <p>Utilizar Power Query para preparar datos mediante procesos de limpieza y transformación.</p>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 3: Modelado y DAX</span>
+                                    <p>Realizar el modelado de datos, estableciendo relaciones entre tablas de hechos y dimensiones, definiendo medidas con DAX y creando columnas calculadas.</p>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 4: Diseño de Dashboards</span>
+                                    <p>Diseñar dashboards interactivos con KPIs, gráficos, mapas, filtros y segmentadores.</p>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 5: Análisis de Resultados</span>
+                                    <p>Analizar los dashboards para identificar patrones, tendencias y oportunidades de mejora que apoyen la toma de decisiones.</p>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 6: Publicación y Móvil</span>
+                                    <p>Publicar proyectos en Power BI Service y adaptar los dashboards para su correcta visualización en dispositivos móviles.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- Curso 2: Python -->
+                        <details>
+                            <summary><i class="fa-brands fa-python" style="color: #3776AB; margin-right: 10px;"></i> 2. Análisis de Datos y ML con Python</summary>
+                            <div class="details-content">
+                                <ul class="servicio-lista" style="margin-bottom: 0;">
+                                    <li><i class="fa-solid fa-code"></i> Clase 1: Fundamentos de Python para Análisis de Datos</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 2: Introducción a NumPy y Pandas para Análisis de Datos</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 3: Caso Práctico 1</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 4: Caso Práctico 2</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 5: Estadística Descriptiva para Análisis de Datos</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 6: Exploración y Limpieza de Datos</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 7: Visualización de Datos con Matplotlib y Seaborn</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 8: Identificación de Patrones y Tendencias</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 9: Introducción a Modelos Predictivos</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 10: Pruebas Estadísticas para Toma de Decisiones</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 11: Introducción al Machine Learning Supervisado</li>
+                                    <li><i class="fa-solid fa-code"></i> Clase 12: Presentación del Trabajo Final</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <!-- Curso 3: RStudio -->
+                        <details>
+                            <summary><i class="fa-solid fa-registered" style="color: #276DC3; margin-right: 10px;"></i> 3. Análisis Estadístico y Data Science con RStudio</summary>
+                            <div class="details-content">
+                                <h4 style="color: #004085; margin-bottom: 10px;">3.1. Estadística Descriptiva</h4>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 1: Tendencia central</span>
+                                    <p>Resume el valor representativo:</p>
+                                    <ul class="sub-lista">
+                                        <li>Media</li>
+                                        <li>Mediana</li>
+                                        <li>Moda</li>
+                                    </ul>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 2: Posición relativa</span>
+                                    <p>Ubica un dato en la distribución:</p>
+                                    <ul class="sub-lista">
+                                        <li>Cuartiles</li>
+                                        <li>Percentiles</li>
+                                        <li>Z-score</li>
+                                    </ul>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 3: Dispersión</span>
+                                    <p>Mide la variabilidad de los datos:</p>
+                                    <ul class="sub-lista">
+                                        <li>Desviación estándar</li>
+                                        <li>Rango</li>
+                                        <li>Rango intercuartílico</li>
+                                    </ul>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 4: Visualización</span>
+                                    <p>Representa los datos gráficamente:</p>
+                                    <ul class="sub-lista">
+                                        <li>Histograma, diagrama de dispersión, boxplot</li>
+                                        <li>Tablas de frecuencia y contingencia</li>
+                                    </ul>
+                                </div>
+
+                                <h4 style="color: #004085; margin: 20px 0 10px 0;">3.2. Estadística Inferencial</h4>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 5: Distribuciones de probabilidad</span>
+                                    <p>Modelan la distribución de los datos:</p>
+                                    <ul class="sub-lista">
+                                        <li>Normal</li>
+                                        <li>Binomial</li>
+                                        <li>Poisson</li>
+                                        <li>Exponencial</li>
+                                    </ul>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 6: Asociación entre variables</span>
+                                    <p>Evalúa la relación entre variables:</p>
+                                    <ul class="sub-lista">
+                                        <li>Correlación de Pearson</li>
+                                        <li>Correlación de Spearman</li>
+                                    </ul>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 7: Pruebas de hipótesis</span>
+                                    <p>Contrasta hipótesis estadísticas. Se divide en:</p>
+                                    <ul class="sub-lista">
+                                        <li><strong>Paramétricas (Requieren ciertos supuestos):</strong> Prueba t (t-test), ANOVA</li>
+                                        <li><strong>No paramétricas (Menos sensibles a supuestos):</strong> Mann-Whitney U, Wilcoxon signed-rank, Kruskal-Wallis, Chi-cuadrado</li>
+                                    </ul>
+                                </div>
+                                <div class="clase-item">
+                                    <span class="clase-titulo">Clase 8: Modelado estadístico</span>
+                                    <p>Explica o predice variables:</p>
+                                    <ul class="sub-lista">
+                                        <li>Regresión lineal simple</li>
+                                        <li>Regresión múltiple</li>
+                                        <li>Regresión logística</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                    </div>
+                </div>
+
             </div>
-            <p style="text-align: center; color: #666; margin-top: 20px;">
-                (Aquí podrás detallar tus consultorías, proyectos o servicios ofrecidos)
-            </p>
         </section>
 
         <!-- SECCIÓN 3: PORTAFOLIO BI -->
         <section id="portafolio" class="seccion">
-            <h2 class="portafolio-header">Proyecto Final Análisis Ingresos</h2>
+            <h2 class="section-title">Proyecto Final Análisis Ingresos</h2>
             <div class="dashboard-wrapper">
                 <iframe title="Proyecto Final Análisis Ingresos" src="https://app.powerbi.com/view?r=eyJrIjoiN2Y4OGNjZWQtMmQ2MS00NjlkLWFmY2YtNzYwYWE5YWRhOTFkIiwidCI6ImQ3Zjg2NzEwLTAxZTEtNDYxZC04NTk5LTc1OGRlNDU0MmUyYiIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
             </div>
@@ -347,7 +670,7 @@
 
         <!-- SECCIÓN 4: CONTACTO -->
         <section id="contacto" class="seccion">
-            <h2 class="portafolio-header">Contacto</h2>
+            <h2 class="section-title">Contacto</h2>
             <div class="contact-container">
                 <a href="https://wa.me/593986278937" class="contact-card whatsapp" target="_blank" rel="noopener noreferrer">
                     <div class="icon-container">
@@ -382,42 +705,36 @@
         </section>
     </main>
 
-    <!-- MOTOR JAVASCRIPT: Lógica para cambiar de pestaña al instante -->
+    <!-- MOTOR JAVASCRIPT -->
     <script>
         function cambiarSeccion(idSeccion) {
-            // 1. Apaga todas las secciones quitando la clase 'activa'
             const secciones = document.querySelectorAll('.seccion');
             secciones.forEach(seccion => {
                 seccion.classList.remove('activa');
             });
 
-            // 2. Enciende la sección solicitada
             const seccionDestino = document.getElementById(idSeccion);
             if(seccionDestino) {
                 seccionDestino.classList.add('activa');
                 
-                // Truco para reiniciar la animación de la foto cada vez que vuelves al Home
                 if(idSeccion === 'home') {
                     const foto = document.querySelector('.profile-image-container');
                     foto.style.animation = 'none';
-                    foto.offsetHeight; // Fuerza la lectura del DOM
+                    foto.offsetHeight; 
                     foto.style.animation = 'revelarDesdeIzquierda 2s cubic-bezier(0.25, 1, 0.5, 1) forwards';
                 }
             }
 
-            // 3. Quita el subrayado brillante a todos los botones del menú
             const botonesMenu = document.querySelectorAll('#menuNavegacion button');
             botonesMenu.forEach(boton => {
                 boton.classList.remove('active');
             });
 
-            // 4. Le pone el subrayado brillante al botón que acabas de presionar
             const botonDestino = document.getElementById('btn-' + idSeccion);
             if(botonDestino) {
                 botonDestino.classList.add('active');
             }
             
-            // 5. Vuelve el scroll arriba por si el usuario había bajado mucho en otra pestaña
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
